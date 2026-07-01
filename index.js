@@ -1,3 +1,9 @@
+app.post('/proxy', async (req, res) => {
+    console.log("Modtog kald fra Roblox!"); // TILFØJ DENNE LINJE
+    try {
+        const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+            // ... resten af din kode
+
 const express = require('express');
 const fetch = require('node-fetch');
 const app = express();
