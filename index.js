@@ -1,12 +1,15 @@
 const express = require('express');
 const fetch = require('node-fetch');
 const app = express();
-app.use(express.json());
 
-// Denne blok skal erstatte din nuværende app.post('/proxy'...)
+// DENNE LINJE ER KRITISK! Den skal stå FØR app.post
+app.use(express.json()); 
+
 app.post('/proxy', async (req, res) => {
-    try {
-        console.log("Modtog fra Roblox:", JSON.stringify(req.body));
+    // Hvis req.body er tom, vil denne log vise {}
+    console.log("Modtog fra Roblox:", JSON.stringify(req.body));
+    
+    // ... resten af din kode
         
         const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
             method: 'POST',
